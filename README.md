@@ -70,7 +70,7 @@ excluding the Purchsed product from the recommendations?
 
 
 ```
-select p.name, p.description,p.rice
+select p.name, p.description,p.p rice
 from Product p
 join Order_datail od on od.product_id=p.id
 join Orders on od.order_id = Orders.id
@@ -80,6 +80,6 @@ where Customer.id = 1
 and p.category_id=(select category_id from Product where id= 2)
 and p.id != 2
 group by p.id
-order by count(Order_detail.id) DESC
+order by SUM(od.quantity) DESC
 ```
 
