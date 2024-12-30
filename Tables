@@ -1,0 +1,45 @@
+title E-commerce Database Structure
+
+// define tables
+category [icon: tag, color: green] {
+  id int pk
+  name string
+}
+
+product [icon: box, color: orange] {
+  id int pk
+  name string
+  description string
+  price float
+  stock_quantity int
+  category_id int fk
+}
+
+customer [icon: user, color: yellow] {
+  id int pk
+  first_name string
+  last_name string
+  email string
+  password string
+}
+
+orders [icon: shopping-cart, color: blue] {
+  id int pk
+  order_date date
+  total_amount float
+  customer_id int fk
+}
+
+order_detail [icon: file-text, color: purple] {
+  id int pk
+  quantity int
+  unit_price float
+  order_id int fk
+  product_id int fk
+}
+
+// define relationships
+product.category_id >category.id
+orders.customer_id > customer.id
+order_detail.order_id > orders.id
+order_detail.product_id > product.id
