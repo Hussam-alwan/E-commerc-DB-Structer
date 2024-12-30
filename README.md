@@ -23,7 +23,7 @@ Product on od.product_id= Product.id
 where DATE_FORMAT(o.order_date, '%Y-%m') = '2024-12'
 Group by Product.name
 order by total_quantity_sold DESC
-
+```
 Write a SQL query to retrieve a list of customers who have placed orders totaling more than $500 in the past month.
 Include customer names and their total order amounts.
 
@@ -35,5 +35,23 @@ where Orders.order_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH
 group by Customer.id,Customer.first_name,Customer.last_name
 having total_order_amount >500
 ORDER BY total_order_amount DESC
+```
+
+###How we can apply a denormalization mechanism on customer and order entities ?
+We can create a new table called Denormalized_Orders that includes customer information along with the order details.
+```
+CREATE TABLE Denormalized_Orders ( order_id INT PRIMARY KEY, order_date DATE, total_amount
+FLOAT, customer_id INT, customer_first_name VARCHAR(50), customer_last_name VARCHAR(50),
+customer_email VARCHAR(100) );
+
+```
+We'll populate this new table with data from the existing Orders and Customer tables
+
+```
+INSERT INTO Denormalized_Orders (order_id, order_date, total_amount, customer_id,
+customer_first_name, customer_last_name, customer_email) SELECT o.id, o.order_date,
+o.total_amount, c.id, c.first_name, c.last_name, c.email FROM Orders o JOIN Customers c ON
+o.customer_id =c.id
+
 ```
 
