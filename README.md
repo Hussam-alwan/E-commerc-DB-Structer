@@ -1,5 +1,6 @@
-# E-commerc DB Structer
-The design and the analysis for the DB based on the book "Practical Web Database Design"
+# E-commerce Database Design and Analysis
+Inspired by the principles outlined in the book "Practical Web Database Design," this e-commerce database structure aims to facilitate efficient data management and robust 
+analysis. The design includes well-defined tables and relationships to cover essential aspects of an e-commerce platform:
 ### Session 3 Task:
 #### ERD
 ![image](https://github.com/user-attachments/assets/bfd196b3-b7ec-409e-9bed-1249ba5b01dc)
