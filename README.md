@@ -39,9 +39,9 @@ ORDER BY total_order_amount DESC
 ```
 
 ### How we can apply a denormalization mechanism on customer and order entities ?
-We can create a new table called Denormalized_Orders that includes customer information along with the order details.
+We can create a new table called sales_orders  that includes customer information along with the order details.
 ```
-CREATE TABLE Denormalized_Orders ( order_id INT PRIMARY KEY, order_date DATE, total_amount
+CREATE TABLE sales_orders ( order_id INT PRIMARY KEY, order_date DATE, total_amount
 FLOAT, customer_id INT, customer_first_name VARCHAR(50), customer_last_name VARCHAR(50),
 customer_email VARCHAR(100) );
 
@@ -49,7 +49,7 @@ customer_email VARCHAR(100) );
 We'll populate this new table with data from the existing Orders and Customer tables
 
 ```
-INSERT INTO Denormalized_Orders (order_id, order_date, total_amount, customer_id,
+INSERT INTO sales_orders (order_id, order_date, total_amount, customer_id,
 customer_first_name, customer_last_name, customer_email) SELECT o.id, o.order_date,
 o.total_amount, c.id, c.first_name, c.last_name, c.email FROM Orders o JOIN Customers c ON
 o.customer_id =c.id
